@@ -19,7 +19,9 @@ export default function() {
 		requireOnce(moduleContainer, '@nuxtjs/axios')
 	})
 
-	// Add the Storefront plugin which creates the Storefront instance of Axios
+	// Add the Storefront plugin which creates the Storefront instance of Axios.
+	// Not using this.addPlugin so I don't have to deal with adding sub-imports
+	// via addTemplate.
 	this.addPlugin({
 		src: join(__dirname, 'plugins/storefront.js')
 	})

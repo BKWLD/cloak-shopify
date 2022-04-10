@@ -33,7 +33,7 @@ The [`storefront` Nuxt plugin](./plugins/storefront.js) injects `$storefront` gl
 You can make an instance of the Storefront Axios client when outside of Nuxt (like in a Shopify JS entry point) as follows:
 
 ```js
-import { makeStorefrontClient } from '@cloak-app/shopify/plugins/storefront'
+import { makeStorefrontClient } from '@cloak-app/shopify/factories'
 import axios from 'axios'
 const storefront = makeStorefrontClient(axios, {
   url: process.env.SHOPIFY_URL,

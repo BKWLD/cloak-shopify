@@ -1,15 +1,5 @@
-/**
- * Create the Storefront axios client instance
- */
-export default function({ $axios, $config }, inject) {
-	inject('storefront', makeStorefrontClient($axios, {
-		url: $config.cloak.shopify.url,
-		...$config.cloak.shopify.storefront,
-	}))
-}
-
 // Factory method for making Storefront Axios clients
-export function makeStorefrontClient(axios, { url, token, version } = {}) {
+export default function (axios, { url, token, version } = {}) {
 
 	// Make Storefront instance
 	const storefront = axios.create({
