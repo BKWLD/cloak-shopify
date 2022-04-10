@@ -16,10 +16,6 @@ export default {
 			siteName: '@cloak-app/shopify demo',
 		},
 
-		// Example settings for this package
-		shopify: {
-			blockMaxWidthClass: 'max-w',
-		}
 	},
 
 	// @nuxt/content can't be loaded from module

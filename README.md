@@ -15,7 +15,9 @@ Shopify Storefront API client and related helpers.
 
 - `cloak.shopify:`
   - `url` - Your public Shopify store URL, for example: https://brand.myshopify.com or https://shop.brand.com.  Defaults to `process.env.SHOPIFY_URL`.
-  - `storefrontToken` - The Storefront API token of your custom app.  Defaults to `process.env.SHOPIFY_STOREFRONT_TOKEN`.
+  - `storefront:`
+    `token` - The Storefront API token of your custom app.  Defaults to `process.env.SHOPIFY_STOREFRONT_TOKEN`.
+    `version` - The Storefront API version to use.  Defaults to `latest`.
 
 ## Usage
 

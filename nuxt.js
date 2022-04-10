@@ -1,29 +1,27 @@
 import { join } from 'path'
-import { setPublicDefaultOptions } from '@cloak-app/utils'
+import { requireOnce, setPublicDefaultOptions } from '@cloak-app/utils'
 export default function() {
 
 	// Have Nuxt transpile resources
 	this.options.build.transpile.push('@cloak-app/shopify')
 
-	// Allow components to be auto-imported by Nuxt
-	this.nuxt.hook('components:dirs', dirs => {
-		dirs.push({
-			path: join(__dirname, './adapters'),
-			extensions: ['js', 'coffee'],
-			prefix: 'cloak-shopify',
-			level: 2,
-		})
-		dirs.push({
-			path: join(__dirname, './components'),
-			extensions: ['vue', 'js', 'coffee'],
-			prefix: 'cloak-shopify',
-			level: 2,
-		})
+	// Set default options
+	setPublicDefaultOptions(this, 'craft', {
+		url: process.env.SHOPIFY_URL,
+		storefront: {
+			token: process.env.SHOPIFY_STOREFRONT_TOKEN,
+			version: 'latest',
+		}
 	})
 
-	// Set default options
-	setPublicDefaultOptions(this, 'shopify', {
-		blockMaxWidthClass: 'max-w'
+	// Add Axios module at the end so it can be used in the plugin
+	this.nuxt.hook('modules:done', moduleContainer => {
+		requireOnce(moduleContainer, '@nuxtjs/axios')
+	})
+
+	// Add the Storefront plugin which creates the Storefront instance of Axios
+	this.addPlugin({
+		src: join(__dirname, 'plugins/storefront.js')
 	})
 }
 
