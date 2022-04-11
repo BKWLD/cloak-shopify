@@ -1,0 +1,4 @@
+# Money helper
+fragment price on MoneyV2 {
+	amount
+}

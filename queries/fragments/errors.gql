@@ -1,0 +1,6 @@
+# Types of errors in cart queries
+fragment cartUserError on CartUserError {
+	field
+	message
+	code
+}

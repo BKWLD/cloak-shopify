@@ -1,0 +1,51 @@
+#import "./price.gql"
+#import "./product.gql"
+#import "./variant.gql"
+
+# All the data needed to represent the cart in the UI
+fragment cart on Cart {
+	id
+	checkoutUrl
+
+	# Customer info
+	buyerIdentity {
+		customer { id }
+	}
+
+	# Order value
+	estimatedCost {
+		subtotalAmount { ...price }
+		totalAmount { ...price }
+		totalTaxAmount { ...price }
+	}
+
+	# List of discount codes
+	discountCodes {
+		applicable
+		code
+	}
+
+	# The list of line items
+	lines (first: 100) {
+		edges {
+			cursor
+			node { ...cartLine }
+		}
+	}
+}
+
+# The line of the cart
+fragment cartLine on CartLine {
+	id
+	quantity
+	variant: merchandise {
+		...variant
+		product: { ...product }
+	}
+	estimatedCost {
+		subtotalAmount { ...price }
+		totalAmount { ...price }
+	}
+	sellingPlanAllocation { ...sellingPlanAllocation }
+	attributes { key, value }
+}

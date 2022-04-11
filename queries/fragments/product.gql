@@ -1,0 +1,37 @@
+#import "./image.gql"
+
+# Product data, primarily concerned with rendering a product in lists.  Like
+# it includes variant info but lacks product description
+fragment product on Product {
+	id
+	handle
+	title
+
+	# Heirarchy
+	productType
+	vendor
+
+	# Availalability
+	onlineStoreUrl
+	availableForSale
+
+	# Variant options
+	options {
+		name
+		values
+	}
+
+	# List of variants
+	variants(first:100) {
+		edges {
+			node { ...variant }
+		}
+	}
+
+	# Get more images than needed because this fragment is also used on PDP
+	images(first:10) {
+		edges {
+			node { ...image }
+		}
+	}
+}

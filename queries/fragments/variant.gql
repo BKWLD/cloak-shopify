@@ -1,0 +1,41 @@
+#import "./image.gql"
+#import "./price.gql"
+
+# Variant info
+fragment variant on ProductVariant {
+
+	# General
+	id
+	sku
+	title
+	image { ...image }
+
+	# Options
+	selectedOptions {
+		name
+		value
+	}
+
+	# Pricing
+	price: priceV2 { ...price }
+	compareAtPrice: compareAtPriceV2 { ...price }
+	available: availableForSale
+	sellingPlanAllocations(first: 20) {
+		edges {  node { ...sellingPlanAllocation } }
+	}
+}
+
+# Get selling plan options
+fragment sellingPlanAllocation on SellingPlanAllocation {
+
+	# The plan id and interval description
+	sellingPlan {
+		id
+		name
+	}
+
+	# The effective price
+	priceAdjustments {
+		price { ...price }
+	}
+}
