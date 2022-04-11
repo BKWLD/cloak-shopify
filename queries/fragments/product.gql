@@ -1,7 +1,11 @@
 #import "./image.gql"
+#import "./variant.gql"
 
 # Product data, primarily concerned with rendering a product in lists.  Like
-# it includes variant info but lacks product description
+# it includes variant info but lacks product description. I am naming this
+# generically ("product" rather than "product-card") because I want to
+# encourage using only this fragment when fetching product data so we can
+# depend on a consistent payload object structure.
 fragment product on Product {
 	id
 	handle

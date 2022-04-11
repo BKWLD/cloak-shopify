@@ -95,15 +95,31 @@ export linkCustomer = ({ execute }, { cartId, accessToken }) ->
 			cartId: cartId
 			buyerIdentity: customerAccessToken: accessToken
 
+# Get product data for a PDP by adding a couple additional feilds onto the main
+# product fragment
+export getProductDetail = ({ execute }, handle) ->
+	{ product } = await execute
+		variables: { handle }
+		query:  """
+			query getProductDetail($handle: String!) {
+				product: productByHandle(handle:$handle) {
+					...product
+					description: descriptionHtml
+				}
+			}
+			#{productFragment}
+		"""
+	return product
+
 # Helper to look up product card data from their handles by querying the
 # productByHandle method multiple times
-export getProductCards = (handles) ->
+export getProductCards = ({ execute }, handles) ->
 	return [] unless handles?.length
 
 	# Make the list of queries
 	productQueries = handles.map (handle, index) -> """
 		product_#{index}: productByHandle(handle:"#{handle}") {
-			...productCard
+			...product
 		}
 	"""
 

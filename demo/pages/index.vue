@@ -11,10 +11,16 @@ nuxt-content(:document='page')
 <script lang='coffee'>
 export default
 
-	# Get page content
-	asyncData: ({ app, params, $content }) ->
+		# Get page content
+	asyncData: ({ app, params, $content, $storefront }) ->
 		page = await $content('demo').fetch()
-		return { page }
+
+		# Get Shopify data of test product
+		product = await $storefront.getProductDetail 'clay-plant-pot'
+		console.log product
+
+		# Return data
+		return { page}
 
 </script>
 

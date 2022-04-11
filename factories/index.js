@@ -10,11 +10,11 @@ export function makeStorefrontClient(axios, options) {
 
 	// Loop through query helpers and register them on the client, passing the
 	// axios client in as the first argument
-	for (name in queryHelpers) {
-		client[name] = (...args) => {
-			return queryHelpers[name].apply(null, [client, ...args])
+	Object.entries(queryHelpers).forEach(([methodName, method]) => {
+		client[methodName] = (...args) => {
+			return method.apply(null, [client, ...args])
 		}
-	}
+	})
 
 	// Return the final client
 	return client
