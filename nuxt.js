@@ -6,11 +6,11 @@ export default function() {
 	this.options.build.transpile.push('@cloak-app/shopify')
 
 	// Set default options
-	setPublicDefaultOptions(this, 'craft', {
+	setPublicDefaultOptions(this, 'shopify', {
 		url: process.env.SHOPIFY_URL,
 		storefront: {
 			token: process.env.SHOPIFY_STOREFRONT_TOKEN,
-			version: 'latest',
+			version: 'unstable',
 		}
 	})
 
