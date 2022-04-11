@@ -1,3 +1,3 @@
 # [@cloak-app/shopify](https://github.com/BKWLD/cloak-shopify)
 
-Not much to see here
+Check out this [example PDP](/products/clay-plant-pot).

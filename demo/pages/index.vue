@@ -12,15 +12,9 @@ nuxt-content(:document='page')
 export default
 
 		# Get page content
-	asyncData: ({ app, params, $content, $storefront }) ->
+	asyncData: ({ $content }) ->
 		page = await $content('demo').fetch()
-
-		# Get Shopify data of test product
-		product = await $storefront.getProductDetail 'clay-plant-pot'
-		console.log product
-
-		# Return data
-		return { page}
+		return { page }
 
 </script>
 
