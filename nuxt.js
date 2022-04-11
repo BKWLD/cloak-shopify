@@ -22,9 +22,7 @@ export default function() {
 	// Add the Storefront plugin which creates the Storefront instance of Axios.
 	// Not using this.addPlugin so I don't have to deal with adding sub-imports
 	// via addTemplate.
-	this.addPlugin({
-		src: join(__dirname, 'plugins/storefront.js')
-	})
+	this.options.plugins.unshift(join(__dirname, 'plugins/storefront-client.js'))
 }
 
 // Required for published modules
