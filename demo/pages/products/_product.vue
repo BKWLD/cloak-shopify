@@ -16,6 +16,7 @@
 		button Add to Cart
 
 	h3 Cart
+	p TODO
 
 </template>
 

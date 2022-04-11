@@ -8,6 +8,11 @@ export default {
 		'../nuxt',
 	],
 
+	// Generate the demo PDP route
+	generate: {
+		routes: ['/products/clay-plant-pot']
+	},
+
 	// Cloak settings
 	cloak: {
 

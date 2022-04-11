@@ -58,7 +58,7 @@ export addVariants = ({ execute }, {
 				quantity: quantity
 				attributes: { key, value } for key, value of attributes
 
-# Update a line item
+# Update multiple line items
 export updateLines = ({ execute }, {
 	cartId, lineIds, quantity, sellingPlanId
 }) ->
@@ -71,7 +71,7 @@ export updateLines = ({ execute }, {
 				quantity: quantity
 				sellingPlanId: sellingPlanId
 
-# Update a line item
+# Delete multiple line items
 export deleteLines = ({ execute }, { cartId, lineIds }) ->
 	handleCheckoutMutation await execute
 		query: deleteQuery
