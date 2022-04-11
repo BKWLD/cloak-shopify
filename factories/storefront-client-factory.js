@@ -1,3 +1,6 @@
+import mapValues from 'lodash/mapValues'
+import isPlainObject from 'lodash/isPlainObject'
+
 // Factory method for making Storefront Axios clients
 export default function (axios, { url, token, version } = {}) {
 
@@ -13,10 +16,6 @@ export default function (axios, { url, token, version } = {}) {
 
 	// Add execute helper for running gql queries
 	storefront.execute = async payload => {
-
-		// Massage the request
-		payload = cleanEmptyArrays(payload)
-		payload = restrictToSite(payload, site)
 
 		// Execute the query
 		const response = await storefront({
@@ -63,10 +62,10 @@ function flattenEdges(obj) {
 	if (Array.isArray(obj)) return obj.map(flattenEdges)
 
 	// If not an object, return self
-	if (!isObject(obj)) return obj
+	if (!isPlainObject(obj)) return obj
 
 	// Loop through object properties
-	return Object.values(obj).map(val => {
+	return mapValues(obj, val => {
 
 		// If there is an "edges" child, flatten it's contents
 		if (val && val.edges) {
@@ -76,10 +75,4 @@ function flattenEdges(obj) {
 		// Recurse deeper
 		return flattenEdges(val)
 	})
-}
-
-// Quick test for whether var is an object (not a primitive)
-// https://stackoverflow.com/a/14706877/59160
-function isObject(val) {
-	return type === 'function' || type === 'object' && !!obj
 }
