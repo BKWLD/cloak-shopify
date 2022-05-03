@@ -18,7 +18,7 @@
 	},
 	"devDependencies": {
 		"@cloak-app/boilerplate": "^1.0.8",
-		"@cloak-app/demo-theme": "^1.0.5",
+		"@cloak-app/demo-theme": "^1.0.6",
 		"@nuxt/content": "^1.14.0",
 		"nuxt": "^2.15.7"
 	},
