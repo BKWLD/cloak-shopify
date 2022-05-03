@@ -20,3 +20,12 @@ export function makeStorefrontClient(settings = {}) {
 	// Return the final client
 	return client
 }
+
+// Helper to make a client when in the context of a Nuxt module,
+// supporting the optional persence of a mock.  This is necessary because,
+// when a module runs, the injected plugin instance isn't ready yet.
+export function makeModuleStorefrontClient(moduleContainer) {
+	const packageOptions = moduleContainer.options.cloak.shopify
+	return moduleContainer.options.shopifyMock ||
+		makeStorefrontClient(packageOptions)
+}
