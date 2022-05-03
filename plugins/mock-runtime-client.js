@@ -4,5 +4,6 @@
  */
 import { mockAxiosGql } from '@cloak-app/utils/src/axios'
 export default function({ $config, $storefront }) {
-	mockAxiosGql($storefront, $config.cloak.storefront.mocks)
+	const { mocks } = $config.cloak.shopify
+	mockAxiosGql($storefront, mocks, { passthrough: true })
 }

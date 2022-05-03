@@ -1,31 +1,20 @@
 import makeClient from './storefront-client-factory'
 import axios from 'axios'
-import * as queryHelpers from '../helpers/query'
 
-// Export client factory function that automatically applies query helpers
-// to the client. This was done so that the main makeStorefrontClient doesn't
-// depend on importing gql files and, thus, can be directly imported into
-// places (like Netlify functions) that don't route through webpack.
+// Used passed in Axios instance or fallback to a node_modules instance.  The
+// latter may be used when creating a client from another @cloak-app module.
 export function makeStorefrontClient(settings = {}) {
-	const client = makeClient(settings.axios || axios, settings)
-
-	// Loop through query helpers and register them on the client, passing the
-	// axios client in as the first argument
-	Object.entries(queryHelpers).forEach(([methodName, method]) => {
-		client[methodName] = (...args) => {
-			return method.apply(null, [client, ...args])
-		}
-	})
-
-	// Return the final client
-	return client
+	return makeClient(settings.axios || axios, settings)
 }
 
 // Helper to make a client when in the context of a Nuxt module,
 // supporting the optional persence of a mock.  This is necessary because,
 // when a module runs, the injected plugin instance isn't ready yet.
 export function makeModuleStorefrontClient(moduleContainer) {
-	const packageOptions = moduleContainer.options.cloak.shopify
-	return moduleContainer.options.shopifyMock ||
-		makeStorefrontClient(packageOptions)
+	const shopifyOptions = moduleContainer.options.cloak.shopify
+	return moduleContainer.options.storefrontMock ||
+		makeStorefrontClient({
+			url: shopifyOptions.url,
+			...shopifyOptions.storefront,
+		})
 }
