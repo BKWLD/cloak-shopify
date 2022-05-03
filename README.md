@@ -10,23 +10,35 @@ Shopify Storefront API client and related helpers.
 1. Install with `yarn add @cloak-app/shopify`
 2. Add to `nuxt.config` with `buildModules: ['@cloak-app/shopify']`
 
-
 ### Module Options
 
-- `cloak.shopify:`
-  - `url` - Your public Shopify store URL, for example: https://brand.myshopify.com or https://shop.brand.com.  Defaults to `process.env.SHOPIFY_URL`.
-  - `storefront:`
-    `token` - The Storefront API token of your custom app.  Defaults to `process.env.SHOPIFY_STOREFRONT_TOKEN`.
-    `version` - The [Storefront API version](https://shopify.dev/api/usage/versioning) to use.  Defaults to `unstable` (aka, latest).
+Set these properties within `cloak: { shopify: { ... } }` in the nuxt.config.js:
+
+- `url` - Your public Shopify store URL, for example: https://brand.myshopify.com or https://shop.brand.com.  Defaults to `process.env.SHOPIFY_URL`.
+- `storefront:`
+  - `token` - The Storefront API token of your custom app.  Defaults to `process.env.SHOPIFY_STOREFRONT_TOKEN`.
+  - `version` - The [Storefront API version](https://shopify.dev/api/usage/versioning) to use.  Defaults to `unstable` (aka, latest).
+- `mocks` - An array of objects for use with [`mockAxiosGql`](https://github.com/BKWLD/cloak-utils/blob/main/src/axios.js).
 
 ## Usage
 
-### Inside of Nuxt
+### Inside of Nuxt app
 
 The [`storefront` Nuxt plugin](./plugins/storefront.js) injects `$storefront` globally.  This is an Axios instance with it's `baseUrl` set to `cloak.shopify.endpoint`.  In addition, you can call:
 
-- `$craft.execute({ query, variables })` - Executes a GraphQL request that automatically adds a `site` GraphQL variable with the value from the `cloak.craft.site` value.
+- `$storefront.execute({ query, variables })` - Executes a GraphQL request that automatically adds a `site` GraphQL variable with the value from the `cloak.craft.site` value.
 
+### Inside of Nuxt module
+
+You can use the `makeModuleStorefrontClient()` factory method within a Nuxt module to build a `$storefront` instance.  In a module, we can't use the instance that is injected by the `storefront-client` plugin because that is constructed later in the lifecycle.
+
+```js
+// A Nuxt module
+import { makeModuleStorefrontClient } from '@cloak-app/shopify/factories'
+export default function() {
+  const $storefront = makeModuleStorefrontClient(this)
+}
+```
 
 ### Outside of Nuxt
 
@@ -34,8 +46,7 @@ You can make an instance of the Storefront Axios client when outside of Nuxt (li
 
 ```js
 import { makeStorefrontClient } from '@cloak-app/shopify/factories'
-import axios from 'axios'
-const storefront = makeStorefrontClient(axios, {
+const storefront = makeStorefrontClient({
   url: process.env.SHOPIFY_URL,
   token: process.env.SHOPIFY_STOREFRONT_TOKEN,
 })

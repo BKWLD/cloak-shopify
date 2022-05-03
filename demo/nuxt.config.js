@@ -1,3 +1,6 @@
+// Mock stubs
+import someProducts from './stubs/some-products.json'
+
 // Nuxt config
 export default {
 
@@ -19,6 +22,16 @@ export default {
 		// Boilerplate settings
 		boilerplate: {
 			siteName: '@cloak-app/shopify demo',
+		},
+
+		// Mock Storefront queries
+		shopify: {
+			mocks: [
+				{
+					query: 'getSomeProducts',
+					response: someProducts,
+				}
+			],
 		},
 
 	},

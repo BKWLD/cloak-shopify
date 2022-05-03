@@ -11,7 +11,8 @@ export default function() {
 		storefront: {
 			token: process.env.SHOPIFY_STOREFRONT_TOKEN,
 			version: 'unstable',
-		}
+		},
+		mocks: [],
 	})
 
 	// Add Axios module at the end so it can be used in the plugin
@@ -23,6 +24,9 @@ export default function() {
 	// Not using this.addPlugin so I don't have to deal with adding sub-imports
 	// via addTemplate.
 	this.options.plugins.unshift(join(__dirname, 'plugins/storefront-client.js'))
+
+	// Support mocking
+	requireOnce(this, join(__dirname, './modules/mock-storefront.js'))
 }
 
 // Required for published modules
