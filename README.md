@@ -18,6 +18,7 @@ Set these properties within `cloak: { shopify: { ... } }` in the nuxt.config.js:
 - `storefront:`
   - `token` - The Storefront API token of your custom app.  Defaults to `process.env.SHOPIFY_STOREFRONT_TOKEN`.
   - `version` - The [Storefront API version](https://shopify.dev/api/usage/versioning) to use.  Defaults to `unstable` (aka, latest).
+  - `injectClient` - Boolean for whether to inject the `$storefront` client globally.  Defaults to `true`.  You would set this to `false` when this module is a depedency of another module (like [@cloak-app/algolia](https://github.com/BKWLD/cloak-algolia)) that is creating `$storefront` a different way.
 - `mocks` - An array of objects for use with [`mockAxiosGql`](https://github.com/BKWLD/cloak-utils/blob/main/src/axios.js).
 
 ## Usage

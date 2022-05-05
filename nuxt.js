@@ -11,6 +11,7 @@ export default function() {
 		storefront: {
 			token: process.env.SHOPIFY_STOREFRONT_TOKEN,
 			version: 'unstable',
+			injectClient: true,
 		},
 		mocks: [],
 	})
@@ -23,7 +24,10 @@ export default function() {
 	// Add the Storefront plugin which creates the Storefront instance of Axios.
 	// Not using this.addPlugin so I don't have to deal with adding sub-imports
 	// via addTemplate.
-	this.options.plugins.unshift(join(__dirname, 'plugins/storefront-client.js'))
+	if (this.options.cloak.shopify.storefront.injectClient) {
+		const clientPluginPath = join(__dirname, 'plugins/storefront-client.js')
+		this.options.plugins.unshift(clientPluginPath)
+	}
 
 	// Support mocking
 	requireOnce(this, join(__dirname, './modules/mock-storefront.js'))
