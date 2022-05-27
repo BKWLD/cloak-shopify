@@ -8,7 +8,7 @@ fragment cart on Cart {
 	checkoutUrl
 
 	# Customer info
-	buyerIdentity {
+	buyerIdentity @include(if: $includeCustomer) {
 		customer { id }
 	}
 

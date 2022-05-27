@@ -2,7 +2,11 @@
 #import "./fragments/errors.gql"
 
 # Update the discount codes on the cart
-mutation cartDiscountCodesUpdate($cartId: ID!, $discountCodes: [String!]) {
+mutation cartDiscountCodesUpdate(
+	$cartId: ID!
+	$discountCodes: [String!]
+	$includeCustomer: Boolean = false) {
+
 	mutation: cartDiscountCodesUpdate(
 		cartId: $cartId
 		discountCodes: $discountCodes

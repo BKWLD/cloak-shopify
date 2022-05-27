@@ -4,7 +4,8 @@
 # Update a line item
 mutation cartBuyerIdentityUpdate (
 	$cartId: ID!
-	$buyerIdentity: CartBuyerIdentityInput!) {
+	$buyerIdentity: CartBuyerIdentityInput!
+	$includeCustomer: Boolean = true) {
 
   mutation: cartBuyerIdentityUpdate(
 		cartId: $cartId

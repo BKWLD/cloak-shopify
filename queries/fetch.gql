@@ -1,6 +1,9 @@
 #import "./fragments/cart.gql"
 
 # Lookup a cart by id
-query fetchCart($id: ID!) {
+query fetchCart(
+	$id: ID!
+	$includeCustomer: Boolean = false) {
+
   cart(id: $id) { ...cart }
 }

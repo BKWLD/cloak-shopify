@@ -2,7 +2,10 @@
 #import "./fragments/errors.gql"
 
 # Create a new checkout
-mutation cartCreate($input: CartInput) {
+mutation cartCreate(
+	$input: CartInput
+	$includeCustomer: Boolean = false) {
+
 	mutation: cartCreate(input: $input) {
 		cart { ...cart }
 		userErrors { ...cartUserError }
