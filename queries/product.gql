@@ -1,0 +1,12 @@
+#import "./fragments/product.gql"
+
+# Fetch a single product. $pdp can be used to add fields needed for rendering
+# on the PDP, like the description
+query ($handle: String!, $pdp: Boolean = false) {
+	product: productByHandle(handle:$handle) {
+		...product
+
+		# PDP specific fields
+		description: descriptionHtml @include(if: $pdp)
+	}
+}

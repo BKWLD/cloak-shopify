@@ -10,6 +10,7 @@ import updateQuery from '../queries/update.gql'
 import deleteQuery from '../queries/delete.gql'
 import discountsQuery from '../queries/discounts.gql'
 import linkCustomerQuery from '../queries/link-customer.gql'
+import productQuery from '../queries/product.gql'
 import productFragment from '../queries/fragments/product.gql'
 
 # Throw errors if found in the response, else map the checkout object
@@ -95,20 +96,11 @@ export linkCustomer = ({ execute }, { cartId, accessToken }) ->
 			cartId: cartId
 			buyerIdentity: customerAccessToken: accessToken
 
-# Get product data for a PDP by adding a couple additional feilds onto the main
-# product fragment
+# Get product data for a PDP
 export getProductDetail = ({ execute }, handle) ->
 	{ product } = await execute
-		variables: { handle }
-		query:  """
-			query getProductDetail($handle: String!) {
-				product: productByHandle(handle:$handle) {
-					...product
-					description: descriptionHtml
-				}
-			}
-			#{productFragment}
-		"""
+		variables: { handle, pdp: true }
+		query: productQuery
 	return product
 
 # Helper to look up product card data from their handles by querying the
