@@ -2,7 +2,7 @@
 
 # Fetch a single product. $pdp can be used to add fields needed for rendering
 # on the PDP, like the description
-query (
+query getProduct(
 	$handle: String!
 	$pdp: Boolean = false
 	$country: CountryCode

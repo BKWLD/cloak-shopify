@@ -2,7 +2,13 @@ import mapValues from 'lodash/mapValues'
 import isPlainObject from 'lodash/isPlainObject'
 
 // Factory method for making Storefront Axios clients
-export default function (axios, { url, token, version = '2022-04' } = {}) {
+export default function (axios, {
+	url,
+	token,
+	version = '2022-04',
+	language,
+	country,
+} = {}) {
 
 	// Make Storefront instance
 	const storefront = axios.create({
@@ -16,6 +22,9 @@ export default function (axios, { url, token, version = '2022-04' } = {}) {
 
 	// Add execute helper for running gql queries
 	storefront.execute = async payload => {
+
+		// Massage the payload
+		payload = setInContext(payload, { language, country })
 
 		// Execute the query
 		const response = await storefront({
@@ -52,6 +61,19 @@ export class StorefrontError extends Error {
 
 		// Store the request payload
 		this.payload = payload
+	}
+}
+
+// Send language and country on all requests if specified, for use with
+// @inContext directive
+export function setInContext(payload, { language, country }) {
+	return {
+		...payload,
+		variables: {
+			language,
+			country,
+			...(payload.variables || {})
+		}
 	}
 }
 

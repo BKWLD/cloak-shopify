@@ -5,12 +5,20 @@ export default function() {
 	// Have Nuxt transpile resources
 	this.options.build.transpile.push('@cloak-app/shopify')
 
+	// Detect the lanaguge and country code from the CMS_SITE ENV
+	// https://regex101.com/r/ozRGpF/1
+	const matches = process.env.CMS_SITE?.match(/(\w{2})(?:-|_)(\w{2})/),
+		language = matches?.[1].toUpperCase(),
+		country = matches?.[2].toUpperCase()
+
 	// Set default options
 	setPublicDefaultOptions(this, 'shopify', {
 		url: process.env.SHOPIFY_URL,
 		storefront: {
 			token: process.env.SHOPIFY_STOREFRONT_TOKEN,
 			version: '2022-04',
+			language,
+			country,
 			injectClient: true,
 		},
 		mocks: [],
