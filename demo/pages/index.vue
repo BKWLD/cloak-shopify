@@ -11,7 +11,7 @@ nuxt-content(:document='page')
 <script lang='coffee'>
 export default
 
-		# Get page content
+	# Get page content
 	asyncData: ({ $content }) ->
 		page = await $content('demo').fetch()
 		return { page }

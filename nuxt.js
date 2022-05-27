@@ -31,6 +31,15 @@ export default function() {
 
 	// Support mocking
 	requireOnce(this, join(__dirname, './modules/mock-storefront.js'))
+
+	// Add ssg-variants module if @cloak-app/craft is used
+	if ([
+		...this.options.modules,
+		...this.options.buildModules,
+	].includes('@cloak-app/craft')) {
+		requireOnce(this, join(__dirname, './modules/ssg-variants.js'))
+	}
+
 }
 
 // Required for published modules
