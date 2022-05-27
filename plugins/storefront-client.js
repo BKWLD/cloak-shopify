@@ -7,7 +7,7 @@ import * as cardsHelpers from '../helpers/cards'
 export default function({ $axios, $config }, inject) {
 
 	// Make the instance
-	const $storefront = mergeQueryHelpers(makeStorefrontClient({
+	const $storefront = mergeClientHelpers(makeStorefrontClient({
 		axios: $axios,
 		url: $config.cloak.shopify.url,
 		...$config.cloak.shopify.storefront,
