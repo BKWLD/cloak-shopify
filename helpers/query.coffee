@@ -34,30 +34,30 @@ export create = ({ execute }) ->
 
 # Add an item to the checkout
 export addVariant = ({ execute }, {
-	cartId, variantId, quantity, sellingPlanId
+	cartId, variantId, quantity, sellingPlanId, attributes
 }) ->
-	handleCheckoutMutation await execute
-		query: addQuery
-		variables:
-			cartId: cartId
-			lines: [
-				merchandiseId: variantId
-				quantity: quantity
-				sellingPlanId: sellingPlanId
-			]
+	addVariants {
+		cartId
+		variantIds: [ variantId ]
+		quantity
+		sellingPlanId
+		attributes
+	}
 
 # Add multiple items to the checkout with the same attributes
 export addVariants = ({ execute }, {
-	cartId, variantIds, quantity, attributes = {}
+	cartId, variantIds, quantity, sellingPlanId, attributes = {}
 }) ->
 	handleCheckoutMutation await execute
 		query: addQuery
 		variables:
 			cartId: cartId
-			lines: variantIds.map (variantId) ->
+			lines: variantIds.map (variantId) -> {
 				merchandiseId: variantId
-				quantity: quantity
+				quantity
+				sellingPlanId
 				attributes: { key, value } for key, value of attributes
+			}
 
 # Update multiple line items
 export updateLines = ({ execute }, {
