@@ -40,7 +40,9 @@ fragment cartLine on CartLine {
 	quantity
 	variant: merchandise {
 		...variant
-		product { ...product }
+		... on ProductVariant {
+			product { ...product }
+		}
 	}
 	estimatedCost {
 		subtotalAmount { ...price }
