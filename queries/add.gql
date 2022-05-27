@@ -5,7 +5,10 @@
 mutation cartLinesAdd(
 	$cartId: ID!
 	$lines: [CartLineInput!]!
-	$includeCustomer: Boolean = false) {
+	$includeCustomer: Boolean = false
+	$country: CountryCode
+	$language: LanguageCode)
+	@inContext(country: $country, language: $language) {
 
 	mutation: cartLinesAdd(cartId: $cartId, lines: $lines) {
 		cart { ...cart }

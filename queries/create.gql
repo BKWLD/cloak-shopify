@@ -4,7 +4,10 @@
 # Create a new checkout
 mutation cartCreate(
 	$input: CartInput
-	$includeCustomer: Boolean = false) {
+	$includeCustomer: Boolean = false
+	$country: CountryCode
+	$language: LanguageCode)
+	@inContext(country: $country, language: $language) {
 
 	mutation: cartCreate(input: $input) {
 		cart { ...cart }
