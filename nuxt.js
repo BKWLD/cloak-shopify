@@ -10,7 +10,7 @@ export default function() {
 		url: process.env.SHOPIFY_URL,
 		storefront: {
 			token: process.env.SHOPIFY_STOREFRONT_TOKEN,
-			version: 'unstable',
+			version: '2022-04',
 			injectClient: true,
 		},
 		mocks: [],

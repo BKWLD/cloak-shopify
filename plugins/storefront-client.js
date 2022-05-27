@@ -2,6 +2,7 @@
  * Create the Storefront axios client instance
  */
 import { makeStorefrontClient } from '../factories'
+import * as mergeHelpers from '../helpers/merge'
 import * as queryHelpers from '../helpers/query'
 export default function({ $axios, $config }, inject) {
 
@@ -22,5 +23,13 @@ export default function({ $axios, $config }, inject) {
 		}
 	})
 
+	// Injeect the final Storefront object
 	inject('storefront', $storefront)
+
+	// Inject merge helpers, which rely on the storefront object
+	Object.entries(mergeHelpers).forEach(([methodName, method]) => {
+		inject(methodName, (...args) => {
+			return method.apply(null, [$storefront, ...args])
+		})
+	})
 }
