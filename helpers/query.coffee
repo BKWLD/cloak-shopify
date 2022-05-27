@@ -59,6 +59,17 @@ export addVariants = ({ execute }, {
 				attributes: { key, value } for key, value of attributes
 			}
 
+# Update a line item
+export updateLine = ({ execute }, {
+	cartId, lineId, quantity, sellingPlanId
+}) ->
+	updateLines { execute }, {
+		cartId
+		lineIds: [ lineId ]
+		quantity
+		sellingPlanId
+	}
+
 # Update multiple line items
 export updateLines = ({ execute }, {
 	cartId, lineIds, quantity, sellingPlanId
@@ -71,6 +82,13 @@ export updateLines = ({ execute }, {
 				id: lineId
 				quantity: quantity
 				sellingPlanId: sellingPlanId
+
+# Delete multiple line items
+export deleteLine = ({ execute }, { cartId, lineId }) ->
+	deleteLines { execute }, {
+		cartId
+		lineIds: [ lineId ]
+	}
 
 # Delete multiple line items
 export deleteLines = ({ execute }, { cartId, lineIds }) ->
