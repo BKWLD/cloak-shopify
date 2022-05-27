@@ -47,10 +47,12 @@ You can make an instance of the Storefront Axios client when outside of Nuxt (li
 
 ```js
 import { makeStorefrontClient } from '@cloak-app/shopify/factories'
-const storefront = makeStorefrontClient({
+import mergeClientHelpers from '@cloak-app/shopify/factories/merge-helpers'
+const storefront = mergeClientHelpers(makeStorefrontClient({
   url: process.env.SHOPIFY_URL,
   token: process.env.SHOPIFY_STOREFRONT_TOKEN,
-})
+  version: '2022-04', // Optional
+}))
 
 // Optional, inject it globally into Vue components
 import Vue from 'vue'
