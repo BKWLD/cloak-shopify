@@ -36,7 +36,7 @@ export create = ({ execute }) ->
 export addVariant = ({ execute }, {
 	cartId, variantId, quantity, sellingPlanId, attributes
 }) ->
-	addVariants {
+	addVariants { execute }, {
 		cartId
 		variantIds: [ variantId ]
 		quantity
