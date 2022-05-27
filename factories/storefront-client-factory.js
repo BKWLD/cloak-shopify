@@ -2,7 +2,7 @@ import mapValues from 'lodash/mapValues'
 import isPlainObject from 'lodash/isPlainObject'
 
 // Factory method for making Storefront Axios clients
-export default function (axios, { url, token, version } = {}) {
+export default function (axios, { url, token, version = '2022-04' } = {}) {
 
 	// Make Storefront instance
 	const storefront = axios.create({
