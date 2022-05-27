@@ -14,6 +14,7 @@
 	},
 	"dependencies": {
 		"@cloak-app/utils": "^1.7.2",
+		"atob-lite": "^2.0.0",
 		"lodash": "^4.0.0"
 	},
 	"devDependencies": {

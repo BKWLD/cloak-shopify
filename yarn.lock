@@ -2703,6 +2703,11 @@ at-least-node@^1.0.0:
   resolved "https://registry.yarnpkg.com/at-least-node/-/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
   integrity sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==
 
+atob-lite@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/atob-lite/-/atob-lite-2.0.0.tgz#0fef5ad46f1bd7a8502c65727f0367d5ee43d696"
+  integrity sha512-LEeSAWeh2Gfa2FtlQE1shxQ8zi5F9GHarrGKz08TMdODD5T4eH6BMsvtnhbWZ+XQn+Gb6om/917ucvRu7l7ukw==
+
 atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
@@ -10667,7 +10672,7 @@ webpack-dev-middleware@^4.2.0:
     range-parser "^1.2.1"
     schema-utils "^3.0.0"
 
-"webpack-graphql-loader@github:gpoitch/graphql-loader#gp/refresh", webpack-graphql-loader@gpoitch/graphql-loader#gp/refresh:
+webpack-graphql-loader@gpoitch/graphql-loader#gp/refresh:
   version "1.0.2"
   resolved "https://codeload.github.com/gpoitch/graphql-loader/tar.gz/42f0f990a6132ccd5e284d0e6cfeade12728dba2"
   dependencies:
