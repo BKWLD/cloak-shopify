@@ -20,10 +20,15 @@ export default function (axios, {
 		},
 	})
 
+	// Store configuration on the object, for reading out externally (or mutating)
+	storefront.language = language
+	storefront.country = country
+
 	// Add execute helper for running gql queries
 	storefront.execute = async payload => {
 
 		// Massage the payload
+		const { language, country } = storefront
 		payload = setInContext(payload, { language, country })
 
 		// Execute the query
@@ -45,7 +50,7 @@ export default function (axios, {
 	return storefront
 }
 
-// Make a custom erorr object
+// Make a custom error object
 export class StorefrontError extends Error {
 	constructor(errors, payload) {
 
