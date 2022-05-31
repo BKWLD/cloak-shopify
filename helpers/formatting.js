@@ -17,3 +17,14 @@ export function getShopifyId(id) {
 	const matches = id.match(/\/([^\/?]+)(?:\?.+)?$/)
 	if (matches) return matches[1]
 }
+
+// Format a string or number like money, using vue-i18n if it's installed
+// or falling back to USD
+export function formatMoney(val) {
+	if (this && this.$n) return this.$n(val, 'currency')
+	return parseFloat(val)
+		.toLocaleString(process.env.LOCALE_CODE || 'en-US', {
+			style: 'currency',
+			currency: process.env.CURRENCY_CODE || 'USD'
+		})
+}
