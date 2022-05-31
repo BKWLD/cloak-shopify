@@ -48,6 +48,9 @@ export default function() {
 		requireOnce(this, join(__dirname, './modules/ssg-variants.js'))
 	}
 
+	// Add helpers
+	this.options.plugins.unshift(join(__dirname, 'plugins/helpers.js'))
+
 }
 
 // Required for published modules
