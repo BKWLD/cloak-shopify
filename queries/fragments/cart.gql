@@ -8,7 +8,7 @@ fragment cart on Cart {
 	checkoutUrl
 
 	# Customer info
-	buyerIdentity {
+	buyerIdentity @include(if: $includeCustomer) {
 		customer { id }
 	}
 
@@ -40,7 +40,9 @@ fragment cartLine on CartLine {
 	quantity
 	variant: merchandise {
 		...variant
-		product { ...product }
+		... on ProductVariant {
+			product { ...product }
+		}
 	}
 	estimatedCost {
 		subtotalAmount { ...price }

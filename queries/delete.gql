@@ -2,7 +2,14 @@
 #import "./fragments/errors.gql"
 
 # Update a line item
-mutation cartLinesRemove($cartId: ID!, $lines: [ID!]!) {
+mutation cartLinesRemove(
+	$cartId: ID!
+	$lines: [ID!]!
+	$includeCustomer: Boolean = false
+	$country: CountryCode
+	$language: LanguageCode)
+	@inContext(country: $country, language: $language) {
+
   mutation: cartLinesRemove(cartId: $cartId, lineIds: $lines) {
 		cart { ...cart }
 		userErrors { ...cartUserError }

@@ -1,5 +1,7 @@
 // Mock stubs
 import someProducts from './stubs/some-products.json'
+import productsForSsgVariants from './stubs/products-for-ssg-variants.json'
+import productVariantsForSsgVariants from './stubs/product-variants-for-ssg-variants.json'
 
 // Nuxt config
 export default {
@@ -8,6 +10,7 @@ export default {
 	buildModules: [
 		'@cloak-app/boilerplate',
 		'@cloak-app/demo-theme',
+		'@cloak-app/craft',
 		'../nuxt',
 	],
 
@@ -30,9 +33,23 @@ export default {
 				{
 					query: 'getSomeProducts',
 					response: someProducts,
-				}
+				},
+				{
+					query: 'getProductVariantsForSsgVariants',
+					response: productVariantsForSsgVariants
+				},
 			],
 		},
+
+		// Mock Craft queries
+		craft: {
+			mocks: [
+				{
+					query: 'getProductsForSsgVariants',
+					response: productsForSsgVariants
+				}
+			]
+		}
 
 	},
 

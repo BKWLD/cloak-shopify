@@ -1,6 +1,12 @@
 #import "./fragments/cart.gql"
 
 # Lookup a cart by id
-query fetchCart($id: ID!) {
+query fetchCart(
+	$id: ID!
+	$includeCustomer: Boolean = false
+	$country: CountryCode
+	$language: LanguageCode)
+	@inContext(country: $country, language: $language) {
+
   cart(id: $id) { ...cart }
 }

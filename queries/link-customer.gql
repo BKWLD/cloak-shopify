@@ -4,7 +4,11 @@
 # Update a line item
 mutation cartBuyerIdentityUpdate (
 	$cartId: ID!
-	$buyerIdentity: CartBuyerIdentityInput!) {
+	$buyerIdentity: CartBuyerIdentityInput!
+	$includeCustomer: Boolean = true
+	$country: CountryCode
+	$language: LanguageCode)
+	@inContext(country: $country, language: $language) {
 
   mutation: cartBuyerIdentityUpdate(
 		cartId: $cartId
