@@ -70,13 +70,14 @@ export class StorefrontError extends Error {
 }
 
 // Send language and country on all requests if specified, for use with
-// @inContext directive
+// @inContext directive. Casting falsey values to null because Shopify errors
+// on empty strings.
 export function setInContext(payload, { language, country }) {
 	return {
 		...payload,
 		variables: {
-			language,
-			country,
+			language: language || null,
+			country: country || null,
 			...(payload.variables || {})
 		}
 	}
