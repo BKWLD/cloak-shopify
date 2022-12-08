@@ -5,14 +5,13 @@ import isPlainObject from 'lodash/isPlainObject'
 export default function (axios, {
 	url,
 	token,
-	version = '2022-04',
 	language,
 	country,
 } = {}) {
 
 	// Make Storefront instance
 	const storefront = axios.create({
-		baseURL: `${url}/api/${version}/graphql`,
+		baseURL: `${url}/api/2022-07/graphql`,
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
