@@ -10,7 +10,7 @@ export function getShopifyId(id) {
 	if (String(id).match(/^\d+$/)) return id
 
 	// De-base64.  This should only be required when migrating cart ids that were
-	// stored in a cookie, AKA client-side pre Storefront API version 2022-04.
+	// stored in a cookie, AKA client-side pre Storefront API version 2022-07.
 	if (!id.match(/^gid:\/\//)) id = atob(id)
 
 	// Return the ID
