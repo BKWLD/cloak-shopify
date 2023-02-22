@@ -11,7 +11,7 @@ export function makeStorefrontClient(settings = {}) {
 // supporting the optional persence of a mock.  This is necessary because,
 // when a module runs, the injected plugin instance isn't ready yet.
 export function makeModuleStorefrontClient(moduleContainer) {
-	const shopifyOptions = moduleContainer.options.cloak.shopify
+	const shopifyOptions = moduleContainer.options.cloak?.shopify || {}
 	return moduleContainer.options.storefrontMock ||
 		makeStorefrontClient({
 			url: shopifyOptions.url,
