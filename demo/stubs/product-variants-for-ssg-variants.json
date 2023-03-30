@@ -1,0 +1,15 @@
+{
+	"data": {
+		"product": {
+			"variants": {
+				"edges": [
+					{
+						"node": {
+							"id": "gid://shopify/ProductVariant/10079785100"
+						}
+					}
+				]
+			}
+		}
+	}
+}

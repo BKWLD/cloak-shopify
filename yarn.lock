@@ -932,13 +932,13 @@
   dependencies:
     coffeescript "^2.5.1"
 
-"@cloak-app/boilerplate@^1.0.8":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@cloak-app/boilerplate/-/boilerplate-1.0.9.tgz#bda031cc152f5d7bccf0e928349164129b65de52"
-  integrity sha512-XMKxJ3KzZyrWPORdC7/HcsPus3fSSwLUVN+vB6WyZzL8Ft9hu1UDxkI0waDTP/VzJBRIu3ZQdaP60s5tTKNH/Q==
+"@cloak-app/boilerplate@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@cloak-app/boilerplate/-/boilerplate-1.2.0.tgz#045783df058106a4b93151f1526e088a81a1b071"
+  integrity sha512-4oHDf08sz/6UU8OmX9VyipK+4/NoWcD1KoWhzFG5E4sLQFpAjk6YEbVFN4vgKHiQ1cBYvHxZ91B4FwZ3hY8eNw==
   dependencies:
     "@bkwld/credits" "^0.3.0"
-    "@cloak-app/utils" "^1.0.1"
+    "@cloak-app/utils" "^1.5.0"
     "@nuxt/utils" "^2.15.0"
     "@nuxtjs/axios" "^5.0.0"
     "@nuxtjs/gtm" "^2.0.0"
@@ -964,6 +964,16 @@
     vue-routing-anchor-parser "^1.13.1"
     webpack-graphql-loader gpoitch/graphql-loader#gp/refresh
 
+"@cloak-app/craft@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@cloak-app/craft/-/craft-1.2.0.tgz#a24a40534ae41f84b1350e4680e6b9bef63f46be"
+  integrity sha512-p0o3buOQzI3jck0SEJl0H3mSILveGKTfUQWEp09nBaOyEIf6JmjIk5ZIFlw7UbGnjzxYrQrbb+iKdjKFc1T/xg==
+  dependencies:
+    "@cloak-app/utils" "^1.7.1"
+    "@nuxtjs/axios" "^5.0.0"
+    consola "^2.15.3"
+    lodash "^4.0.0"
+
 "@cloak-app/demo-theme@^1.0.6":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@cloak-app/demo-theme/-/demo-theme-1.0.6.tgz#99de986efa6180bf17fd86723e9dab5b52eec5a1"
@@ -971,12 +981,7 @@
   dependencies:
     prism-themes "^1.9.0"
 
-"@cloak-app/utils@^1.0.1":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@cloak-app/utils/-/utils-1.2.0.tgz#0871f94181403f1b8227479524b9b5122fb44dd9"
-  integrity sha512-odRgoHlHE+2iUnbNuZ4OVWmvWlghxy/gfTtum7yzucFo8fipNG3vJ60WS57aJfQUYXNDXeFL4lJoVNj8o+kerg==
-
-"@cloak-app/utils@^1.7.2":
+"@cloak-app/utils@^1.5.0", "@cloak-app/utils@^1.7.1", "@cloak-app/utils@^1.7.2":
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/@cloak-app/utils/-/utils-1.7.2.tgz#c8a8b1aa48dcd81884d5ee7661caa7a47dfa20b5"
   integrity sha512-zH9/3IRMRVgPCLqwq+DIP0fyfvwCUojdKSXO2gWFFgpa7AMYp8icccqKyD9Hze5ksFVxdTgCPFA/vdtGfxqOZQ==
@@ -2697,6 +2702,11 @@ at-least-node@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/at-least-node/-/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
   integrity sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==
+
+atob-lite@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/atob-lite/-/atob-lite-2.0.0.tgz#0fef5ad46f1bd7a8502c65727f0367d5ee43d696"
+  integrity sha512-LEeSAWeh2Gfa2FtlQE1shxQ8zi5F9GHarrGKz08TMdODD5T4eH6BMsvtnhbWZ+XQn+Gb6om/917ucvRu7l7ukw==
 
 atob@^2.1.2:
   version "2.1.2"
@@ -10662,7 +10672,7 @@ webpack-dev-middleware@^4.2.0:
     range-parser "^1.2.1"
     schema-utils "^3.0.0"
 
-"webpack-graphql-loader@github:gpoitch/graphql-loader#gp/refresh", webpack-graphql-loader@gpoitch/graphql-loader#gp/refresh:
+webpack-graphql-loader@gpoitch/graphql-loader#gp/refresh:
   version "1.0.2"
   resolved "https://codeload.github.com/gpoitch/graphql-loader/tar.gz/42f0f990a6132ccd5e284d0e6cfeade12728dba2"
   dependencies:

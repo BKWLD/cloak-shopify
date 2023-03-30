@@ -10,6 +10,7 @@ import updateQuery from '../queries/update.gql'
 import deleteQuery from '../queries/delete.gql'
 import discountsQuery from '../queries/discounts.gql'
 import linkCustomerQuery from '../queries/link-customer.gql'
+import productQuery from '../queries/product.gql'
 import productFragment from '../queries/fragments/product.gql'
 
 # Throw errors if found in the response, else map the checkout object
@@ -33,30 +34,41 @@ export create = ({ execute }) ->
 
 # Add an item to the checkout
 export addVariant = ({ execute }, {
-	cartId, variantId, quantity, sellingPlanId
+	cartId, variantId, quantity, sellingPlanId, attributes
 }) ->
-	handleCheckoutMutation await execute
-		query: addQuery
-		variables:
-			cartId: cartId
-			lines: [
-				merchandiseId: variantId
-				quantity: quantity
-				sellingPlanId: sellingPlanId
-			]
+	addVariants { execute }, {
+		cartId
+		variantIds: [ variantId ]
+		quantity
+		sellingPlanId
+		attributes
+	}
 
 # Add multiple items to the checkout with the same attributes
 export addVariants = ({ execute }, {
-	cartId, variantIds, quantity, attributes = {}
+	cartId, variantIds, quantity, sellingPlanId, attributes = {}
 }) ->
 	handleCheckoutMutation await execute
 		query: addQuery
 		variables:
 			cartId: cartId
-			lines: variantIds.map (variantId) ->
+			lines: variantIds.map (variantId) -> {
 				merchandiseId: variantId
-				quantity: quantity
+				quantity
+				sellingPlanId
 				attributes: { key, value } for key, value of attributes
+			}
+
+# Update a line item
+export updateLine = ({ execute }, {
+	cartId, lineId, quantity, sellingPlanId
+}) ->
+	updateLines { execute }, {
+		cartId
+		lineIds: [ lineId ]
+		quantity
+		sellingPlanId
+	}
 
 # Update multiple line items
 export updateLines = ({ execute }, {
@@ -70,6 +82,13 @@ export updateLines = ({ execute }, {
 				id: lineId
 				quantity: quantity
 				sellingPlanId: sellingPlanId
+
+# Delete multiple line items
+export deleteLine = ({ execute }, { cartId, lineId }) ->
+	deleteLines { execute }, {
+		cartId
+		lineIds: [ lineId ]
+	}
 
 # Delete multiple line items
 export deleteLines = ({ execute }, { cartId, lineIds }) ->
@@ -95,20 +114,11 @@ export linkCustomer = ({ execute }, { cartId, accessToken }) ->
 			cartId: cartId
 			buyerIdentity: customerAccessToken: accessToken
 
-# Get product data for a PDP by adding a couple additional feilds onto the main
-# product fragment
+# Get product data for a PDP
 export getProductDetail = ({ execute }, handle) ->
 	{ product } = await execute
-		variables: { handle }
-		query:  """
-			query getProductDetail($handle: String!) {
-				product: productByHandle(handle:$handle) {
-					...product
-					description: descriptionHtml
-				}
-			}
-			#{productFragment}
-		"""
+		variables: { handle, pdp: true }
+		query: productQuery
 	return product
 
 # Helper to look up product card data from their handles by querying the

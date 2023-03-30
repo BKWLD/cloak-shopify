@@ -2,7 +2,14 @@
 #import "./fragments/errors.gql"
 
 # Add a line item to a checkout
-mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+mutation cartLinesAdd(
+	$cartId: ID!
+	$lines: [CartLineInput!]!
+	$includeCustomer: Boolean = false
+	$country: CountryCode
+	$language: LanguageCode)
+	@inContext(country: $country, language: $language) {
+
 	mutation: cartLinesAdd(cartId: $cartId, lines: $lines) {
 		cart { ...cart }
 		userErrors { ...cartUserError }
