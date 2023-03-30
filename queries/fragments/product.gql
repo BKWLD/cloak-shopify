@@ -10,6 +10,7 @@ fragment product on Product {
 	id
 	handle
 	title
+	tags
 
 	# Heirarchy
 	productType
