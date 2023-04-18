@@ -11,7 +11,7 @@ export default function (axios, {
 
 	// Make Storefront instance
 	const storefront = axios.create({
-		baseURL: `${url}/api/2022-07/graphql`,
+		baseURL: `${url}/api/2022-10/graphql`,
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
