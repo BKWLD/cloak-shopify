@@ -1,6 +1,6 @@
 {
 	"name": "@cloak-app/shopify",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "Shopify Storefront API client and related helpers.",
 	"repository": "git@github.com:BKWLD/cloak-shopify.git",
 	"author": "Bukwild <info@bukwild.com>",
