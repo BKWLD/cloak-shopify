@@ -13,7 +13,7 @@ fragment cart on Cart {
 	}
 
 	# Order value
-	estimatedCost {
+	cost {
 		subtotalAmount { ...price }
 		totalAmount { ...price }
 		totalTaxAmount { ...price }
@@ -44,7 +44,7 @@ fragment cartLine on CartLine {
 			product { ...product }
 		}
 	}
-	estimatedCost {
+	cost {
 		subtotalAmount { ...price }
 		totalAmount { ...price }
 	}

@@ -23,7 +23,7 @@ export state = ->
 	# Default values for Shopify properties we consume
 	id: null
 	lines: []
-	estimatedCost:
+	cost:
 		subtotalAmount: amount: 0
 		totalAmount: amount: 0
 		totalTaxAmount: amount: 0
@@ -42,9 +42,9 @@ export getters =
 	checkoutUrl: (state) -> state.checkoutUrl
 
 	# Helper for accessing totals
-	subtotal: (state) -> state.estimatedCost.subtotalAmount.amount
-	total: (state) -> state.estimatedCost.totalAmount.amount
-	tax: (state) -> state.estimatedCost.totalTaxAmount?.amount || 0
+	subtotal: (state) -> state.cost.subtotalAmount.amount
+	total: (state) -> state.cost.totalAmount.amount
+	tax: (state) -> state.cost.totalTaxAmount?.amount || 0
 
 	# Get the quantity of items in the cart
 	itemCount: (state, getters) ->
