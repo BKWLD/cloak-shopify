@@ -83,7 +83,7 @@ export function setInContext(payload, { language, country }) {
 }
 
 // Recurse through an object and flatten eddge/node levels
-function flattenEdges(obj) {
+export function flattenEdges(obj) {
 
 	// If an array, act on all members
 	if (Array.isArray(obj)) return obj.map(flattenEdges)
